@@ -21,11 +21,15 @@ export const login = async (phone: string, password: string) => {
     localStorage.setItem('refresh_token', refresh)
 
     // Save account info to the store
-    authStore.login({
-      id: account.id,
-      phone_number: account.user.phone_number,
-      balance: parseFloat(account.balance) // Convert string balance to number
-    })
+    authStore.login(
+      {
+        id: account.id,
+        phone_number: account.user.phone_number,
+        balance: parseFloat(account.balance) // Convert balance to number
+      },
+      access,
+      refresh
+    ) // Pass tokens to the login method
   } catch (error) {
     console.log(error)
     throw error // Rethrow the error to handle it in the component

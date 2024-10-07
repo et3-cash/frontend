@@ -20,7 +20,7 @@ const handleSignup = async (payload: { phone: string; password: string }) => {
 
     // On successful signup, redirect to the OTP verification page (or wherever needed)
     router.push({
-      path: '/verify-otp',
+      path: '/auth/verify-otp',
       query: { phone: payload.phone } // Append phone number to the URL as query parameter
     })
   } catch (error) {

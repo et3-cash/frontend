@@ -24,9 +24,9 @@ export const deposit = async (amount: number) => {
 
 export const sendMoney = async (amount: number, phone_number: string) => {
   try {
-    const response = await axiosInstance.post('/send-money/', {
+    const response = await axiosInstance.post('/transfer/', {
       amount,
-      phone_number
+      receiver_phone_number: phone_number
     })
     return response.data // Return data from the API response
   } catch (error) {

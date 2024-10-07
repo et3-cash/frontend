@@ -1,18 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 
-// Auth layout
+// Import layouts and views
 import AuthLayout from '@/layouts/AuthLayout.vue'
-
-// Auth views
+import AppLayout from '@/layouts/AppLayout.vue'
+import NotFound from '@/views/NotFound.vue'
 import LoginView from '@/views/LoginView.vue'
 import SignupView from '@/views/SignupView.vue'
 import OTPView from '@/views/OTPView.vue'
-
-// Authenticated layout
-import AppLayout from '@/layouts/AppLayout.vue'
-
-// Account views
 import HomeView from '@/views/HomeView.vue'
 import WithdrawView from '@/views/WithdrawView.vue'
 import DepositView from '@/views/DepositView.vue'
@@ -21,7 +16,6 @@ import TransactionsView from '@/views/TransactionsView.vue'
 import SettingsView from '@/views/SettingsView.vue'
 import LogoutView from '@/views/LogoutView.vue'
 
-// Auth store
 import { useAuthStore } from '@/store/auth'
 
 const routes: Array<RouteRecordRaw> = [
@@ -30,9 +24,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/auth',
     component: AuthLayout,
     children: [
-      { path: 'login', component: LoginView }, // Remove the leading "/"
-      { path: 'signup', component: SignupView }, // Remove the leading "/"
-      { path: 'verify-otp', component: OTPView } // Remove the leading "/"
+      { path: 'login', component: LoginView },
+      { path: 'signup', component: SignupView },
+      { path: 'verify-otp', component: OTPView }
     ]
   },
 
@@ -49,7 +43,14 @@ const routes: Array<RouteRecordRaw> = [
       { path: 'settings', component: SettingsView },
       { path: 'logout', component: LogoutView }
     ],
-    meta: { requiresAuth: true } // Mark these routes as protected
+    meta: { requiresAuth: true }
+  },
+
+  // Catch-all route for 404
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 
@@ -60,16 +61,22 @@ const router = createRouter({
 
 // Global route guard to protect routes
 router.beforeEach((to, from, next) => {
-  const authStore = useAuthStore() // Access the auth store
-  const publicPages = ['/auth/login', '/auth/signup', '/auth/verify-otp'] // Public pages that don't require authentication
-  const authRequired = !publicPages.includes(to.path) // Check if the route requires authentication
+  const authStore = useAuthStore()
+  const publicPages = ['/auth/login', '/auth/signup', '/auth/verify-otp']
 
-  // If authentication is required and user is not authenticated, redirect to login
+  // Redirect to 404 if the route is not found
+  if (!to.matched.length) {
+    return next({ name: 'NotFound' })
+  }
+
+  const authRequired = !publicPages.includes(to.path)
+
+  // Redirect to login if the user is not authenticated
   if (authRequired && !authStore.isAuthenticated) {
     return next('/auth/login')
   }
 
-  next() // Allow navigation if authenticated or if accessing a public page
+  next()
 })
 
 export default router

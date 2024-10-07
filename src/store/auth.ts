@@ -13,41 +13,49 @@ interface AuthState {
 
 export const useAuthStore = defineStore('auth', {
   state: (): AuthState => ({
-    user: null,
-    isAuthenticated: false
+    user: JSON.parse(localStorage.getItem('user') || 'null'), // Restore user from localStorage
+    isAuthenticated: !!localStorage.getItem('access_token') // Check if access token exists
   }),
 
   actions: {
-    login(userData: User) {
+    // Login: set user data, authentication status, and persist them in localStorage
+    login(userData: User, accessToken: string, refreshToken: string) {
       this.user = userData
       this.isAuthenticated = true
+
+      // Save user data and tokens to localStorage
+      localStorage.setItem('user', JSON.stringify(userData))
+      localStorage.setItem('access_token', accessToken)
+      localStorage.setItem('refresh_token', refreshToken)
     },
 
-    // Handle logout
+    // Logout: clear user data and tokens from state and localStorage
     logout() {
       this.user = null
       this.isAuthenticated = false
+
+      // Clear tokens and user data from localStorage
       localStorage.removeItem('access_token')
       localStorage.removeItem('refresh_token')
+      localStorage.removeItem('user')
     },
 
     // Restore session from localStorage if tokens exist
     restoreSession() {
       const accessToken = localStorage.getItem('access_token')
-      const refreshToken = localStorage.getItem('refresh_token')
+      const user = JSON.parse(localStorage.getItem('user') || 'null')
 
-      // Check if tokens exist and are valid (we assume the presence of tokens is enough for now)
-      if (accessToken && refreshToken) {
-        // You may add more sophisticated token validation here
+      if (accessToken && user) {
+        this.user = user
         this.isAuthenticated = true
-
-        // Optionally, fetch user data with access token to restore user details
-        // For now, we'll assume the user data is still valid and keep the session active
       }
     },
+
+    // Update the user's balance in the store and persist it in localStorage
     updateBalance(newBalance: number) {
       if (this.user) {
         this.user.balance = newBalance
+        localStorage.setItem('user', JSON.stringify(this.user)) // Update the user data in localStorage
       }
     }
   }

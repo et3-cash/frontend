@@ -17,7 +17,7 @@
           <td>{{ transaction.transaction_type }}</td>
           <td>{{ transaction.amount }}</td>
           <!-- Conditionally show the recipient's phone number if it's a transfer -->
-          <td v-if="transaction.transaction_type === 'transfer'">
+          <td>
             {{ transaction?.recipient?.phone_number || 'N/A' }}
           </td>
           <td>{{ transaction.description }}</td>

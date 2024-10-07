@@ -44,7 +44,7 @@ import { RouterView } from 'vue-router'
 /* Auth Content Box */
 .auth-content {
   width: 100%;
-  max-width: 30vw;
+  max-width: 80vw;
   padding: 20px;
   background-color: white;
   border-radius: 8px;
