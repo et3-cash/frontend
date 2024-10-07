@@ -1,5 +1,5 @@
 <template>
-  <h1 class="auth-title">Login to Your Wallet</h1>
+  <h2 class="auth-title">Login to Your Wallet</h2>
   <LoginForm @login="handleLogin" />
 </template>
 
@@ -17,7 +17,7 @@ const router = useRouter()
 
 const handleLogin = async (payload: { phone: string; password: string }) => {
   try {
-    login(payload.phone, payload.password)
+    await login(payload.phone, payload.password)
     router.push('/home')
   } catch (error) {
     console.error('Login failed:', error)

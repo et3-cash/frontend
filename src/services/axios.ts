@@ -8,10 +8,23 @@ const axiosInstance = axios.create({
   }
 })
 
-// Optional: Add interceptors for request or response if needed
-// axiosInstance.interceptors.request.use(config => {
-//   // Modify config (e.g., add authentication tokens) if necessary
-//   return config;
-// });
+// Add a request interceptor to include the Authorization header
+axiosInstance.interceptors.request.use(
+  (config) => {
+    // Retrieve the access token from localStorage
+    const token = localStorage.getItem('access_token')
+
+    // If the token exists, set the Authorization header
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`
+    }
+
+    return config
+  },
+  (error) => {
+    // Handle the error if the request fails before reaching the server
+    return Promise.reject(error)
+  }
+)
 
 export default axiosInstance

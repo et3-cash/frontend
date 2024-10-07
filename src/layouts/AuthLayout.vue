@@ -44,13 +44,18 @@ import { RouterView } from 'vue-router'
 /* Auth Content Box */
 .auth-content {
   width: 100%;
-  max-width: 400px;
-  padding: 40px;
+  max-width: 30vw;
+  padding: 20px;
   background-color: white;
   border-radius: 8px;
   border: 1px solid #ddd; /* Added subtle border */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Stronger shadow for depth */
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 /* Title Styling */

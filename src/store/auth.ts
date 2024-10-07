@@ -44,6 +44,11 @@ export const useAuthStore = defineStore('auth', {
         // Optionally, fetch user data with access token to restore user details
         // For now, we'll assume the user data is still valid and keep the session active
       }
+    },
+    updateBalance(newBalance: number) {
+      if (this.user) {
+        this.user.balance = newBalance
+      }
     }
   }
 })

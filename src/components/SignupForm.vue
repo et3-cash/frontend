@@ -35,6 +35,11 @@
           Sign Up
         </button>
       </form>
+      <!-- Link to the Login page -->
+      <p :class="styles.link">
+        Already have a wallet?
+        <RouterLink to="/auth/login" :class="styles.signupLink">Login</RouterLink>
+      </p>
     </div>
   </div>
 </template>

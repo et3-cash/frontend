@@ -30,9 +30,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/auth',
     component: AuthLayout,
     children: [
-      { path: 'login', component: LoginView },
-      { path: 'signup', component: SignupView },
-      { path: 'verify-otp', component: OTPView }
+      { path: 'login', component: LoginView }, // Remove the leading "/"
+      { path: 'signup', component: SignupView }, // Remove the leading "/"
+      { path: 'verify-otp', component: OTPView } // Remove the leading "/"
     ]
   },
 

@@ -1,7 +1,6 @@
 <template>
   <div :class="styles.formContainer">
     <div :class="styles.from">
-      <h2>Login</h2>
       <form @submit.prevent="submitForm">
         <div :class="styles.formGroup">
           <label for="phone">Phone Number</label>
@@ -18,6 +17,11 @@
         </div>
         <button type="submit" :class="styles.submitBtn">Login</button>
       </form>
+      <!-- Link to the Sign Up page -->
+      <p :class="styles.link">
+        Don't have a wallet?
+        <RouterLink to="/auth/signup" :class="styles.signupLink">Sign Up</RouterLink>
+      </p>
     </div>
   </div>
 </template>

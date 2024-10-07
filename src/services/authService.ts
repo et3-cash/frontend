@@ -27,7 +27,7 @@ export const login = async (phone: string, password: string) => {
       balance: parseFloat(account.balance) // Convert string balance to number
     })
   } catch (error) {
-    console.error('Login failed:', error)
+    console.log(error)
     throw error // Rethrow the error to handle it in the component
   }
 }
