@@ -1,12 +1,24 @@
 <script setup lang="ts">
-// import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <h1>Hello et3</h1>
+  <header>
+    <h1>Welcome to My Wallet App</h1>
+    <nav>
+      <!-- Navigation links using RouterLink -->
+      <RouterLink to="/login">Login</RouterLink>
+      <RouterLink to="/signup">Signup</RouterLink>
+      <RouterLink to="/dashboard">Dashboard</RouterLink>
+    </nav>
+  </header>
+
+  <!-- This is where the routed component will be rendered -->
+  <RouterView />
 </template>
 
 <style scoped>
+/* Header and layout styles */
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -17,6 +29,7 @@ header {
   margin: 0 auto 2rem;
 }
 
+/* Navigation styles */
 nav {
   width: 100%;
   font-size: 12px;
@@ -42,6 +55,7 @@ nav a:first-of-type {
   border: 0;
 }
 
+/* Responsive styling for larger screens */
 @media (min-width: 1024px) {
   header {
     display: flex;
@@ -63,7 +77,6 @@ nav a:first-of-type {
     text-align: left;
     margin-left: -1rem;
     font-size: 1rem;
-
     padding: 1rem 0;
     margin-top: 1rem;
   }
