@@ -1,11 +1,6 @@
 <template>
-  <AuthLayout>
-    <!-- Slot for the title -->
-    <template #title> Verify Your OTP </template>
-
-    <!-- OtpForm component to handle the OTP input -->
-    <OTPForm @submitOtp="handleOtpSubmit" />
-  </AuthLayout>
+  <h1 class="auth-title">Verify Your OTP</h1>
+  <OTPForm @submitOtp="handleOtpSubmit" />
 </template>
 
 <script setup lang="ts">

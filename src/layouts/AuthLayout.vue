@@ -5,10 +5,8 @@
     </header>
 
     <main class="auth-content">
-      <h1 class="auth-title"><slot name="title" /></h1>
-      <!-- Slot for title -->
-      <slot />
-      <!-- Slot for the form content (Login, Signup, etc.) -->
+      <!-- Render the child component based on the current route -->
+      <RouterView />
     </main>
 
     <footer class="auth-footer">
@@ -18,10 +16,12 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { RouterView } from 'vue-router'
+</script>
 
 <style scoped>
-/* Responsive Auth Layout */
+/* Auth Layout Styling */
 .auth-layout {
   display: flex;
   flex-direction: column;
@@ -32,6 +32,7 @@
   padding: 20px;
 }
 
+/* Header Styling */
 .auth-header {
   margin-bottom: 20px;
 }
@@ -40,13 +41,15 @@
   height: 80px;
 }
 
+/* Auth Content Box */
 .auth-content {
   width: 100%;
   max-width: 400px;
   padding: 40px;
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd; /* Added subtle border */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Stronger shadow for depth */
   text-align: center;
 }
 
@@ -65,6 +68,17 @@
   color: #777;
 }
 
+/* Footer links for privacy and terms */
+.auth-footer a {
+  color: #777;
+  margin: 0 5px;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
 /* Mobile Styles */
 @media (max-width: 768px) {
   .auth-content {
@@ -81,6 +95,7 @@
   }
 }
 
+/* Very small screen (below 480px) */
 @media (max-width: 480px) {
   .auth-content {
     padding: 20px;
@@ -94,5 +109,44 @@
   .auth-logo {
     height: 50px;
   }
+}
+
+/* Extra small screen (below 320px) */
+@media (max-width: 320px) {
+  .auth-content {
+    padding: 15px;
+  }
+
+  .auth-title {
+    font-size: 18px;
+  }
+
+  .auth-logo {
+    height: 40px;
+  }
+}
+
+/* Dark Mode Support */
+[data-theme='dark'] .auth-layout {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+[data-theme='dark'] .auth-content {
+  background-color: #333;
+  border: 1px solid #444;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .auth-title {
+  color: #f0f0f0;
+}
+
+[data-theme='dark'] .auth-footer {
+  color: #bbb;
+}
+
+[data-theme='dark'] .auth-footer a {
+  color: #bbb;
 }
 </style>

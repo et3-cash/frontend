@@ -1,0 +1,130 @@
+/* Sidebar styling */
+.sidebar {
+  background-color: #2c3e50; /* Dark background */
+  width: 240px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.navItem {
+  margin-bottom: 20px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  color: #ecf0f1;
+  font-size: 18px;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.navLink:hover {
+  background-color: #34495e;
+}
+
+/* Icon and text styling */
+.navIcon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.navText {
+  font-size: 16px;
+}
+
+/* Main content area (includes header and page content) */
+.mainContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header styling */
+.header {
+  padding: 10px; /* Reduced height by adjusting padding */
+  background: linear-gradient(90deg, #4caf50, #81c784);
+  color: white;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* Content area */
+main {
+  padding: 20px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+/* Layout wrapper */
+.appLayout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Responsive Design - Adjust layout for smaller screens */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px; /* Smaller sidebar width for tablets */
+    padding: 15px;
+  }
+
+  .navLink {
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .navIcon {
+    font-size: 18px;
+  }
+
+  .navText {
+    font-size: 14px;
+  }
+
+  .header {
+    font-size: 22px; /* Reduce font size for header on smaller screens */
+    padding: 8px; /* Slightly reduced padding for header */
+  }
+
+  main {
+    padding: 15px; /* Reduce content padding on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 180px; /* Even smaller sidebar for mobile */
+    padding: 10px;
+  }
+
+  .navLink {
+    font-size: 14px; /* Smaller font size for mobile */
+    padding: 6px;
+  }
+
+  .navIcon {
+    font-size: 16px; /* Reduce icon size on mobile */
+  }
+
+  .navText {
+    font-size: 12px; /* Smaller text for mobile */
+  }
+
+  .header {
+    font-size: 20px; /* Reduce header font size further for mobile */
+    padding: 6px; /* Reduce header padding */
+  }
+
+  main {
+    padding: 10px; /* Smaller content padding for mobile */
+  }
+}

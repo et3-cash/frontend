@@ -1,18 +1,14 @@
 <template>
-  <AuthLayout>
-    <!-- Slot for the title -->
-    <template #title> Create Your Account </template>
+  <h1>Create Your Account</h1>
 
-    <!-- SignupForm component -->
-    <SignupForm @signup="handleSignup" />
-  </AuthLayout>
+  <!-- SignupForm component -->
+  <SignupForm @signup="handleSignup" />
 </template>
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import SignupForm from '../components/SignupForm.vue' // Import the signup form component
 import { signup } from '../services/authService' // Import the signup service
-import AuthLayout from '../layouts/AuthLayout.vue' // Reuse AuthLayout for consistency
 
 const router = useRouter() // Use Vue Router to navigate after signup
 

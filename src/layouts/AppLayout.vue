@@ -17,7 +17,7 @@
     <div :class="styles.mainContent">
       <!-- Header -->
       <header :class="styles.header">
-        <h1>Dashboard</h1>
+        <h1>et3 Wallet</h1>
       </header>
 
       <!-- Page Content (This will render the selected route) -->
