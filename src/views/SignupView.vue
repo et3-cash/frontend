@@ -25,6 +25,10 @@ const handleSignup = async (payload: { phone: string; password: string }) => {
     })
   } catch (error) {
     console.error('Signup failed:', error)
+    if(error?.response?.data?.phone_number) {
+      alert('Phone number already exists. Please try again.')
+      return
+    }
     alert('Signup failed. Please try again.')
   }
 }
