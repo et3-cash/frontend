@@ -23,10 +23,10 @@
       </p>
 
       <!-- Error message if the validation fails -->
-      <p v-if="errorMessage" :class="styles.error">{{ errorMessage }}</p>
+      <p v-if="errorMessage" :class="styles.error" id="error-deposit">{{ errorMessage }}</p>
 
       <!-- Success message after deposit -->
-      <p v-if="successMessage" :class="styles.success">{{ successMessage }}</p>
+      <p v-if="successMessage" :class="styles.success" id="success-deposit">{{ successMessage }}</p>
 
       <!-- Submit button -->
       <button type="submit" :class="styles.submitBtn" :disabled="cannotDeposit">Deposit</button>

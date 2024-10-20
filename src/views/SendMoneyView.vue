@@ -35,10 +35,10 @@
       </p>
 
       <!-- Error message if the validation fails -->
-      <p v-if="errorMessage" :class="styles.error">{{ errorMessage }}</p>
+      <p v-if="errorMessage" :class="styles.error" id="error-sending">{{ errorMessage }}</p>
 
       <!-- Success message after send -->
-      <p v-if="successMessage" :class="styles.success">{{ successMessage }}</p>
+      <p v-if="successMessage" :class="styles.success" id="success-sending">{{ successMessage }}</p>
 
       <!-- Submit button -->
       <button type="submit" :class="styles.submitBtn" :disabled="cannotSend">Send</button>

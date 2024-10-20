@@ -18,7 +18,7 @@
           <td>{{ transaction.amount }}</td>
           <!-- Conditionally show the recipient's phone number if it's a transfer -->
           <td>
-            {{ transaction?.recipient?.phone_number || 'N/A' }}
+            {{ transaction?.description?.includes('Transfer') ? transaction?.description?.split(' ')[2] : 'N/A' }}
           </td>
           <td>{{ transaction.description }}</td>
           <td>{{ formatDate(transaction.created_at) }}</td>

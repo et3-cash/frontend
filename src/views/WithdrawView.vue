@@ -23,7 +23,7 @@
       </p>
 
       <!-- Error message if the validation fails -->
-      <p v-if="errorMessage" :class="styles.error">{{ errorMessage }}</p>
+      <p v-if="errorMessage" :class="styles.error" id="error-withdraw">{{ errorMessage }}</p>
 
       <!-- Submit button -->
       <button type="submit" :class="styles.submitBtn" :disabled="cannotWithdraw">Withdraw</button>
