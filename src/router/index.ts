@@ -59,24 +59,25 @@ const router = createRouter({
   routes
 })
 
-// Global route guard to protect routes
 router.beforeEach((to, from, next) => {
-  const authStore = useAuthStore()
-  const publicPages = ['/auth/login', '/auth/signup', '/auth/verify-otp']
+  const authStore = useAuthStore();
 
-  // Redirect to 404 if the route is not found
-  if (!to.matched.length) {
-    return next({ name: 'NotFound' })
+  // Restore session before checking authentication status
+  if (!authStore.isAuthenticated) {
+    authStore.restoreSession();
   }
 
-  const authRequired = !publicPages.includes(to.path)
+  // Check if the route is public (under /auth)
+  const isPublicRoute = to.matched.some((record) => record.path.startsWith('/auth'));
 
-  // Redirect to login if the user is not authenticated
-  if (authRequired && !authStore.isAuthenticated) {
-    return next('/auth/login')
+  // Redirect to login if the user is trying to access a protected route and is not authenticated
+  if (!isPublicRoute && !authStore.isAuthenticated) {
+    return next('/auth/login');
   }
 
-  next()
-})
+  // Allow the navigation if it's a public route or the user is authenticated
+  next();
+});
+
 
 export default router
